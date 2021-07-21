@@ -100,8 +100,8 @@ export class AlertPage implements OnInit {
         {
           name: 'name4',
           type: 'date',
-          min: '2017-03-01',
-          max: '2018-01-12'
+          min: '1995-01-01',
+          max: '2030-12-01'
         },
         // input date without min nor max
         {
@@ -139,7 +139,8 @@ export class AlertPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: () => {
+          handler: (data) => {
+            console.log(data);
             console.log('Confirm Ok');
           }
         }
