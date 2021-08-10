@@ -44,6 +44,42 @@ const routes: Routes = [
     path: 'fab-button',
     loadChildren: () => import('./pages/fab-button/fab-button.module').then( m => m.FabButtonPageModule)
   },
+  {
+    path: 'grid',
+    loadChildren: () => import('./pages/grid/grid.module').then( m => m.GridPageModule)
+  },
+  {
+    path: 'infinite-scroll',
+    loadChildren: () => import('./pages/infinite-scroll/infinite-scroll.module').then( m => m.InfiniteScrollPageModule)
+  },
+  {
+    path: 'input',
+    loadChildren: () => import('./pages/input/input.module').then( m => m.InputPageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'list-reordered',
+    loadChildren: () => import('./pages/list-reordered/list-reordered.module').then( m => m.ListReorderedPageModule)
+  },
+  {
+    path: 'loading',
+    loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./pages/modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'modal-info',
+    loadChildren: () => import('./pages/modal-info/modal-info.module').then( m => m.ModalInfoPageModule)
+  },
+  {
+    path: 'popover',
+    loadChildren: () => import('./pages/popover/popover.module').then( m => m.PopoverPageModule)
+  },
 ];
 
 @NgModule({

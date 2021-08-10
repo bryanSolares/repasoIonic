@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref='/' color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Popover</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirPopOver($event)">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="abrirPopOver($event)" expand="block" shape="round">
+    Abrir Popover
+  </ion-button>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="abrirPopOver($event)">
+        <ion-icon slot="icon-only" name="person-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Footer</ion-title>
+  </ion-toolbar>
+</ion-footer>

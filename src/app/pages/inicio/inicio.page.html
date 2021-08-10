@@ -1,5 +1,16 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+
+    <!-- <ion-buttons slot="start">
+      <ion-button (click)="mostrarMenu()">
+        <ion-icon color="primary" slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
     <ion-title>Componentes</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,15 +18,10 @@
 <ion-content>
 
   <ion-list>
-    <ion-item *ngFor="let componente of componentes" [routerLink]="componente.redirectTo" detail>
-      <ion-icon [name]="componente.icon" slot="start"></ion-icon>
-      {{ componente.name }}
+    <ion-item *ngFor="let item of menu | async" [routerLink]="item.redirectTo" detail>
+      <ion-icon [name]="item.icon" slot="start" color="twitter"></ion-icon>
+      {{ item.name }}
     </ion-item>
   </ion-list>
-
-
-  <!-- <ion-button routerLink="/action-sheet">
-    Action Sheet
-  </ion-button> -->
 
 </ion-content>

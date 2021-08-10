@@ -1,3 +1,24 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-menu contentId="main" menuId="main-menu" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+
+      <ion-list>
+        <ion-menu-toggle *ngFor="let item of menu | async">
+          <ion-item [routerLink]="item.redirectTo" detail>
+            <ion-icon [name]="item.icon" slot="start" color="twitter"></ion-icon>
+            {{ item.name }}
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
