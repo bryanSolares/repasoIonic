@@ -1,0 +1,51 @@
+<app-header titulo='Segment'></app-header>
+<!-- <ion-toolbar>
+  <ion-searchbar placeholder="Buscar" inputmode="text" (ionChange)="onSearchChange($event)" [debounce]="250">
+  </ion-searchbar>
+</ion-toolbar> -->
+
+<ion-content>
+
+  <ion-segment value="" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="">
+      <ion-label>Todos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="DC Comics">
+      <ion-label>DC Comics</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Marvel Comics">
+      <ion-label>Marvel Comics</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="heroes.length === 0">
+    <ion-item *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+      <ion-skeleton-text slot="end" animated style="width: 100px"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item *ngFor="let item of heroes | filter:publisher:'publisher'"
+      class="animate__animated animate__fadeIn animate__faster">
+      <ion-label>
+        <h3>{{item.superhero}} <small> {{item.alter_ego}} </small> </h3>
+        <p>{{item.first_appearance}}</p>
+      </ion-label>
+      <ion-badge slot="end" [color]="item.publisher === 'DC Comics' ? 'warning' : 'primary'">{{item.publisher}}
+      </ion-badge>
+    </ion-item>
+  </ion-list>
+
+
+
+
+
+</ion-content>
