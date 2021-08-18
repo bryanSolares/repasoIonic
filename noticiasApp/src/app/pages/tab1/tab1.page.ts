@@ -1,8 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NewsService } from '../services/news.service';
 import { Article } from '../../intefaces/interfaces';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -11,13 +12,18 @@ import { Article } from '../../intefaces/interfaces';
 })
 export class Tab1Page implements OnInit, OnDestroy {
 
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   news: Article[] = [];
   private destroy$ = new Subject<any>();
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
-    this.newsService.getTopHeadlines().pipe(takeUntil(this.destroy$)).subscribe(news => this.news.push(...news.articles));
+    this.loadNews();
+  }
+
+  loadData(event) {
+    this.loadNews(event);
   }
 
   ngOnDestroy(): void {
@@ -25,4 +31,18 @@ export class Tab1Page implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  private loadNews(event?) {
+    this.newsService.getTopHeadlines().pipe(takeUntil(this.destroy$)).subscribe(news => {
+
+      if (!news.articles.length && event) {
+        this.infiniteScroll.disabled = true;
+        this.infiniteScroll.complete();
+        return;
+      }
+      this.news.push(...news.articles);
+      if (event) {
+        this.infiniteScroll.complete();
+      }
+    });
+  }
 }

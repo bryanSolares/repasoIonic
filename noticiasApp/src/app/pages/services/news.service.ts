@@ -1,5 +1,5 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable max-len */
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -16,14 +16,27 @@ const headers = new HttpHeaders({
 })
 export class NewsService {
 
+  private _headLinesPages = 0;
+  private _headLinesPagesCategory = 0;
+  private _currentCategory = '';
+
   constructor(private http: HttpClient) { }
 
   getTopHeadlines() {
-    return this.executeQuery<ResponseTopHeadlines>(`/top-headlines?country=us&category=business`);
+    this._headLinesPages++;
+    return this.executeQuery<ResponseTopHeadlines>(`/top-headlines?country=us&page=${this._headLinesPages}`);
   }
 
   getTopHeadLinesOfCategory(category: string) {
-    return this.executeQuery<ResponseTopHeadlines>(`/top-headlines?country=us&category=${category}`);
+
+    if (this._currentCategory === category) {
+      this._headLinesPagesCategory++;
+    } else {
+      this._currentCategory = category;
+      this._headLinesPagesCategory = 1;
+    }
+
+    return this.executeQuery<ResponseTopHeadlines>(`/top-headlines?country=us&page=${this._headLinesPagesCategory}&category=${category}`);
   }
 
 
