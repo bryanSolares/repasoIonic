@@ -9,9 +9,14 @@ import { Article } from '../../intefaces/interfaces';
 export class NewsComponent implements OnInit {
 
   @Input() news: Article[] = [];
+  @Input() stateFavorite = false;
 
   constructor() { }
 
   ngOnInit() { }
+
+  actionNewsDeleted(news: Article) {
+    // this.news = this.news.filter(n => n.title !== news?.title);
+  }
 
 }
