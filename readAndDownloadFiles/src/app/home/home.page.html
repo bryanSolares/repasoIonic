@@ -7,6 +7,10 @@
 </ion-header>
 
 <ion-content>
+
+  <div style="height: 10px; background: #ff0000;" [style.width]="downloadProgress + '%'" *ngIf="downloadProgress">
+  </div>
+
   <ion-item>
     <ion-input type="text" placeholder="URL" [(ngModel)]="downloadUrl"></ion-input>
   </ion-item>
@@ -34,4 +38,22 @@
     </ion-col>
 
   </ion-row>
+
+  <ion-list>
+    <ion-list>
+      <ion-item-sliding *ngFor="let f of myFiles">
+        <ion-item (click)="openFile(f)" tappable>
+          <ion-label class="ion-text-wrap">
+            {{f}}
+          </ion-label>
+        </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteFile(f)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-list>
 </ion-content>
