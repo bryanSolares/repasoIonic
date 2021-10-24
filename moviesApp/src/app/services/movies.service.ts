@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { ResponseMDB } from '../interfaces/interfaces';
 
@@ -30,9 +30,9 @@ export class MoviesService {
   }
 
   getDiscoverMovies() {
-    const url = ' /discover/movie';
-    const query = 'sort_by=popularity.asc&page=1&with_watch_monetization_types=flatrate';
-    return this.executePeticion(url, query);
+    const url = '/discover/movie';
+    const query = ' sort_by=popularity.desc';
+    return this.executePeticion<ResponseMDB>(url, query).pipe(map(responseMovies => responseMovies.results));
   }
 
   getGeneresList() {

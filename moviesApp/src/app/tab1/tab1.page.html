@@ -19,7 +19,18 @@
     </ion-row>
   </ion-grid>
 
-  <app-slideshow-poster [movies]="recentsMovies">
+  <app-slideshow-poster [movies]="discoversMovies">
   </app-slideshow-poster>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Populates</h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <app-slideshow-pars [movies]="discoversMovies">
+  </app-slideshow-pars>
 
 </ion-content>

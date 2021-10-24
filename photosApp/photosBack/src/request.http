@@ -1,0 +1,9 @@
+### create user
+POST http://localhost:3000/user/create
+Content-Type: application/x-www-form-urlencoded
+
+{
+  "name": "Bryan Solares",
+  "email": "solares.josue@outlook.com",
+  "password": "123456"
+}

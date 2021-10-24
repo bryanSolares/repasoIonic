@@ -1,0 +1,18 @@
+  <ion-slides [options]="slidesOpts">
+    <ion-slide *ngFor="let movie of movies">
+
+      <ion-row>
+        <ion-col size="12">
+          <ion-card>
+            <img class="poster" [src]="movie.poster_path | image" [alt]="movie.title">
+          </ion-card>
+        </ion-col>
+        <ion-col size="12">
+          <ion-card>
+            <img class="poster" [src]="movie.poster_path | image" [alt]="movie.title">
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+    </ion-slide>
+  </ion-slides>

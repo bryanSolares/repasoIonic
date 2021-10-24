@@ -11,6 +11,8 @@ import { tap } from 'rxjs/operators';
 export class Tab1Page implements OnInit {
 
   recentsMovies: Movie[] = [];
+  discoversMovies: Movie[] = [];
+
   slidesOpts = {
     slidesPerView: 1.5,
     freeMode: true
@@ -19,7 +21,8 @@ export class Tab1Page implements OnInit {
   constructor(private movieService: MoviesService) { }
 
   ngOnInit(): void {
-    this.movieService.getFeature().pipe(tap(console.log)).subscribe(movies => this.recentsMovies = movies);
+    this.movieService.getFeature().subscribe(movies => this.recentsMovies = movies);
+    this.movieService.getDiscoverMovies().pipe(tap(console.log)).subscribe(movies => this.discoversMovies = movies);
   }
 
 }
