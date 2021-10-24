@@ -1,20 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Example Download
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-item>
+    <ion-input type="text" placeholder="URL" [(ngModel)]="downloadUrl"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-button (click)="downloadFile()" [disabled]="dowloadUrl === ''" expand="full">
+    <ion-icon slot="start" name="download"></ion-icon>
+    Click me
+  </ion-button>
+
+  <ion-row>
+    <ion-col size="4">
+      <ion-button (click)="downloadFile(pdfUrl)" expand="full">
+        PDF
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button (click)="downloadFile(videoUrl)" expand="full">
+        MP4
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button (click)="downloadFile(imageUrl)" expand="full">
+        PNG
+      </ion-button>
+    </ion-col>
+
+  </ion-row>
 </ion-content>
