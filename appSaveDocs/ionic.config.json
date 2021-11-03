@@ -1,0 +1,7 @@
+{
+  "name": "appSaveDocs",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

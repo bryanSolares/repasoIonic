@@ -29,6 +29,9 @@ export class HomePage {
   imageUrl =
     'https://file-examples-com.github.io/uploads/2017/10/file_example_PNG_1MB.png';
 
+  adicionalUrl = 'http://localhost:3000/vendor/order/orden-venta/reporte.pdf';
+  // adicionalUrl = 'http://localhost:3000/pdf';
+
   constructor(private http: HttpClient, private fileOpener: FileOpener) {
     this.loadFiles();
   }
@@ -67,7 +70,7 @@ export class HomePage {
         reportProgress: true,
         observe: 'events',
       })
-      .pipe(tap((data) => console.log(data)))
+      .pipe(tap((data: any) => console.log(data, '--------',data.body)))
       .subscribe(async (event) => {
         if (event.type === HttpEventType.DownloadProgress) {
           this.downloadProgress = Math.round(
@@ -79,7 +82,12 @@ export class HomePage {
           const name = this.downloadUrl.substring(
             this.downloadUrl.lastIndexOf('/') + 1
           );
+
+          console.log('event.body -->', event.body);
+          console.log('event.body.type -->', event.body.type);
+
           const base64 = (await this.convetBlobToBase64(event.body)) as string;
+          console.log('base64 -->', base64);
 
           const savedFile = await Filesystem.writeFile({
             path: name,
@@ -91,6 +99,7 @@ export class HomePage {
           //   directory: Directory.Documents,
           //   path: name,
           // });
+
           const path = savedFile.uri;
           const mimeType = this.getMimetype(name);
 
@@ -104,6 +113,17 @@ export class HomePage {
           Storage.set({ key: FILE_KEY, value: JSON.stringify(this.myFiles) });
         }
       });
+  }
+
+  testHttp() {
+    this.http
+      .get('http://localhost:3000/json', {
+        observe: 'events',
+        responseType: 'json',
+        reportProgress: true,
+      })
+      .pipe(tap((r) => console.log('r ------> ', r)))
+      .subscribe((obs) => console.log('obs ------> ', obs));
   }
 
   deleteFile(path) {
